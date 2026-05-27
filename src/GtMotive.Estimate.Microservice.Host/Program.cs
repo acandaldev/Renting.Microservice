@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using Azure.Extensions.AspNetCore.Configuration.Secrets;
@@ -79,18 +79,27 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
     options.KnownProxies.Clear();
 });
 
-JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+if (builder.Environment.IsDevelopment())
+{
+    // Development: no auth required, anonymous access to all endpoints.
+    builder.Services.AddAuthentication();
+    builder.Services.AddAuthorization();
+}
+else
+{
+    JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
-    })
-    .AddIdentityServerAuthentication(options =>
-    {
-        options.Authority = appSettings.JwtAuthority;
-        options.ApiName = "estimate-api";
-        options.SupportedTokens = SupportedTokens.Jwt;
-    });
+    builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
+        })
+        .AddIdentityServerAuthentication(options =>
+        {
+            options.Authority = appSettings.JwtAuthority;
+            options.ApiName = "estimate-api";
+            options.SupportedTokens = SupportedTokens.Jwt;
+        });
+}
 
 builder.Services.AddSwagger(appSettings, builder.Configuration);
 
