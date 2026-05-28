@@ -11,28 +11,11 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.RentVehicle
     /// Rents a vehicle to a given renter.
     /// Enforces business rules: one active rental per renter, vehicle must be available.
     /// </summary>
-    public sealed class RentVehicleUseCase : IRentVehicleUseCase
+    public sealed class RentVehicleUseCase(
+        IVehicleRepository vehicleRepository,
+        IRentalRepository rentalRepository,
+        IRentVehicleOutputPort outputPort) : IRentVehicleUseCase
     {
-        private readonly IVehicleRepository vehicleRepository;
-        private readonly IRentalRepository rentalRepository;
-        private readonly IRentVehicleOutputPort outputPort;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RentVehicleUseCase"/> class.
-        /// </summary>
-        /// <param name="vehicleRepository">Vehicle repository.</param>
-        /// <param name="rentalRepository">Rental repository.</param>
-        /// <param name="outputPort">Output port for the result.</param>
-        public RentVehicleUseCase(
-            IVehicleRepository vehicleRepository,
-            IRentalRepository rentalRepository,
-            IRentVehicleOutputPort outputPort)
-        {
-            this.vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));
-            this.rentalRepository = rentalRepository ?? throw new ArgumentNullException(nameof(rentalRepository));
-            this.outputPort = outputPort ?? throw new ArgumentNullException(nameof(outputPort));
-        }
-
         /// <inheritdoc/>
         public async Task Execute(RentVehicleInput input)
         {
