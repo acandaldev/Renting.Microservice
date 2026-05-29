@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api;
+using GtMotive.Estimate.Microservice.ApplicationCore;
 using GtMotive.Estimate.Microservice.Infrastructure;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -12,7 +13,7 @@ using Xunit;
 
 namespace GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure
 {
-    internal sealed class CompositionRootTestFixture : IDisposable, IAsyncLifetime
+    public sealed class CompositionRootTestFixture : IDisposable, IAsyncLifetime
     {
         private readonly ServiceProvider _serviceProvider;
 
@@ -89,11 +90,14 @@ namespace GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure
             _serviceProvider.Dispose();
         }
 
-        private static void ConfigureServices(IServiceCollection services)
+        private void ConfigureServices(IServiceCollection services)
         {
             services.AddApiDependencies();
+            services.AddUseCases();
             services.AddLogging();
             services.AddBaseInfrastructure(true);
+            services.Configure<GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Settings.MongoDbSettings>(
+                Configuration.GetSection("MongoDb"));
         }
     }
 }
