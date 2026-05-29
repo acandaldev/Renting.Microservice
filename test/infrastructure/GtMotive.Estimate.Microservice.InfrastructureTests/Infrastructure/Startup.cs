@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using Acheve.AspNetCore.TestHost.Security;
 using Acheve.TestHost;
 using GtMotive.Estimate.Microservice.Api;
@@ -40,7 +40,8 @@ namespace GtMotive.Estimate.Microservice.InfrastructureTests.Infrastructure
                 .AddTestServer();
 
             services.AddControllers(ApiConfiguration.ConfigureControllers)
-                .WithApiControllers();
+                .WithApiControllers()
+                .AddNewtonsoftJson();
 
             services.AddBaseInfrastructure(true);
         }
