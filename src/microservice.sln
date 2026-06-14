@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GtMotive.Estimate.Microservice.Api", "GtMotive.Estimate.Microservice.Api\GtMotive.Estimate.Microservice.Api.csproj", "{D081347D-DEAE-46E4-8620-119573B560FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renting.Microservice.Api", "Renting.Microservice.Api\Renting.Microservice.Api.csproj", "{D081347D-DEAE-46E4-8620-119573B560FB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GtMotive.Estimate.Microservice.ApplicationCore", "GtMotive.Estimate.Microservice.ApplicationCore\GtMotive.Estimate.Microservice.ApplicationCore.csproj", "{FDB4DA08-2852-47D2-9123-AC247B7B433F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renting.Microservice.ApplicationCore", "Renting.Microservice.ApplicationCore\Renting.Microservice.ApplicationCore.csproj", "{FDB4DA08-2852-47D2-9123-AC247B7B433F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DAFC007D-B55D-4498-B94E-ACFB38698698}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GtMotive.Estimate.Microservice.Infrastructure", "GtMotive.Estimate.Microservice.Infrastructure\GtMotive.Estimate.Microservice.Infrastructure.csproj", "{30E8BE33-E5C4-4B44-8E36-8FED93966ED2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renting.Microservice.Infrastructure", "Renting.Microservice.Infrastructure\Renting.Microservice.Infrastructure.csproj", "{30E8BE33-E5C4-4B44-8E36-8FED93966ED2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{32507AA8-A629-48CC-9F32-CBCF746E2117}"
 EndProject
@@ -19,11 +19,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unit", "unit", "{9759AD80-2ECC-4B44-8D15-B96BD29CB584}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GtMotive.Estimate.Microservice.FunctionalTests", "..\test\functional\GtMotive.Estimate.Microservice.FunctionalTests\GtMotive.Estimate.Microservice.FunctionalTests.csproj", "{0CCA81DE-A370-4454-A3D7-D4597CDD3981}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renting.Microservice.FunctionalTests", "..\test\functional\Renting.Microservice.FunctionalTests\Renting.Microservice.FunctionalTests.csproj", "{0CCA81DE-A370-4454-A3D7-D4597CDD3981}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GtMotive.Estimate.Microservice.InfrastructureTests", "..\test\infrastructure\GtMotive.Estimate.Microservice.InfrastructureTests\GtMotive.Estimate.Microservice.InfrastructureTests.csproj", "{469DA050-93EC-44F6-AA33-D7072B1149E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renting.Microservice.InfrastructureTests", "..\test\infrastructure\Renting.Microservice.InfrastructureTests\Renting.Microservice.InfrastructureTests.csproj", "{469DA050-93EC-44F6-AA33-D7072B1149E5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GtMotive.Estimate.Microservice.UnitTests", "..\test\unit\GtMotive.Estimate.Microservice.UnitTests\GtMotive.Estimate.Microservice.UnitTests.csproj", "{5F6CD05A-A921-49B8-BF96-1B931022439C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renting.Microservice.UnitTests", "..\test\unit\Renting.Microservice.UnitTests\Renting.Microservice.UnitTests.csproj", "{5F6CD05A-A921-49B8-BF96-1B931022439C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DFAFA64E-36CB-4689-B917-5A6DD3FC8D5E}"
 	ProjectSection(SolutionItems) = preProject
@@ -33,9 +33,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\global.json = ..\global.json
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GtMotive.Estimate.Microservice.Domain", "GtMotive.Estimate.Microservice.Domain\GtMotive.Estimate.Microservice.Domain.csproj", "{157090A2-A86C-4F2A-A31D-3072779E4D99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renting.Microservice.Domain", "Renting.Microservice.Domain\Renting.Microservice.Domain.csproj", "{157090A2-A86C-4F2A-A31D-3072779E4D99}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GtMotive.Estimate.Microservice.Host", "GtMotive.Estimate.Microservice.Host\GtMotive.Estimate.Microservice.Host.csproj", "{9F5951E0-9865-4EE9-A32A-DC545BF21C95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renting.Microservice.Host", "Renting.Microservice.Host\Renting.Microservice.Host.csproj", "{9F5951E0-9865-4EE9-A32A-DC545BF21C95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

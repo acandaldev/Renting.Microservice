@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+
+
+
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.16.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Renting.Microservice.Api\Renting.Microservice.Api.csproj" />
+    <ProjectReference Include="..\..\..\src\Renting.Microservice.ApplicationCore\Renting.Microservice.ApplicationCore.csproj" />
+    <ProjectReference Include="..\..\..\src\Renting.Microservice.Domain\Renting.Microservice.Domain.csproj" />
+    <ProjectReference Include="..\..\..\src\Renting.Microservice.Infrastructure\Renting.Microservice.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Api\" />
+    <Folder Include="ApplicationCore\" />
+    <Folder Include="Infrastructure\" />
+  </ItemGroup>
+
+</Project>
