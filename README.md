@@ -1,7 +1,6 @@
 # Renting Microservice — Prueba Técnica
 
-Microservicio de gestión de flota de vehículos de renting, implementado sobre el template de arquitectura hexagonal de GtMotive.
-
+Microservicio de gestión de flota de vehículos de renting, implementado sobre el template de arquitectura hexagonal.
 ## Requisitos previos
 
 - [.NET SDK 9.0.200](https://dotnet.microsoft.com/download/dotnet/9.0)
