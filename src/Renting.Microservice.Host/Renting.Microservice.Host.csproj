@@ -23,6 +23,8 @@
         <PackageReference Include="Serilog.Sinks.ApplicationInsights" />
         <PackageReference Include="Serilog.Sinks.Console" />
         <PackageReference Include="Swashbuckle.AspNetCore" />
+        <!-- Transitive override: pin to version without known vulnerability -->
+        <PackageReference Include="Newtonsoft.Json" />
     </ItemGroup>
 
     <ItemGroup>

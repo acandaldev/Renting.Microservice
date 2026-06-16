@@ -12,6 +12,9 @@
         <PackageReference Include="MongoDB.Bson" />
         <PackageReference Include="MongoDB.Driver" />
         <PackageReference Include="Polly" />
+        <!-- Transitive overrides: pin to versions without known vulnerabilities -->
+        <PackageReference Include="SharpCompress" />
+        <PackageReference Include="Snappier" />
     </ItemGroup>
 
     <ItemGroup>

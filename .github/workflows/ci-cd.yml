@@ -16,6 +16,16 @@ env:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:7
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --quiet --eval 'db.adminCommand({ ping: 1 })'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
     - uses: actions/checkout@v4
 
@@ -25,13 +35,13 @@ jobs:
         dotnet-version: '9.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore microservice.sln
+      run: dotnet restore src/microservice.sln
 
     - name: Build
-      run: dotnet build microservice.sln --no-restore -c Release
+      run: dotnet build src/microservice.sln --no-restore -c Release
 
     - name: Test
-      run: dotnet test microservice.sln --no-build -c Release --verbosity normal
+      run: dotnet test src/microservice.sln --no-build -c Release --verbosity normal
 
   build-and-deploy:
     needs: build-and-test
