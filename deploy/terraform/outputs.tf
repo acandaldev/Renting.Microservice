@@ -11,6 +11,6 @@ output "aks_cluster_name" {
 }
 
 output "cosmosdb_connection_string" {
-  value     = azurerm_cosmosdb_account.mongo.connection_strings[0]
+  value     = azurerm_cosmosdb_account.mongo.primary_mongodb_connection_string
   sensitive = true
 }

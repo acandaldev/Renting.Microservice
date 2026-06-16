@@ -1,0 +1,1281 @@
+{
+	"format_version": "1.2",
+	"terraform_version": "1.15.6",
+	"variables": {
+		"environment": {
+			"value": "dev"
+		},
+		"location": {
+			"value": "westeurope"
+		},
+		"project_name": {
+			"value": "renting"
+		}
+	},
+	"planned_values": {
+		"outputs": {
+			"acr_login_server": {
+				"sensitive": false
+			},
+			"aks_cluster_name": {
+				"sensitive": false,
+				"type": "string",
+				"value": "aks-renting-dev"
+			},
+			"cosmosdb_connection_string": {
+				"sensitive": true
+			},
+			"resource_group_name": {
+				"sensitive": false,
+				"type": "string",
+				"value": "rg-renting-dev"
+			}
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "azurerm_container_registry.acr",
+					"mode": "managed",
+					"type": "azurerm_container_registry",
+					"name": "acr",
+					"provider_name": "registry.terraform.io/hashicorp/azurerm",
+					"schema_version": 2,
+					"values": {
+						"admin_enabled": true,
+						"anonymous_pull_enabled": null,
+						"data_endpoint_enabled": null,
+						"export_policy_enabled": true,
+						"georeplications": [],
+						"identity": [],
+						"location": "westeurope",
+						"name": "crrentingdev",
+						"network_rule_bypass_option": "AzureServices",
+						"public_network_access_enabled": true,
+						"quarantine_policy_enabled": null,
+						"resource_group_name": "rg-renting-dev",
+						"sku": "Basic",
+						"tags": null,
+						"timeouts": null,
+						"zone_redundancy_enabled": false
+					},
+					"sensitive_values": {
+						"admin_password": true,
+						"encryption": [],
+						"georeplications": [],
+						"identity": [],
+						"network_rule_set": [],
+						"retention_policy": [],
+						"trust_policy": []
+					}
+				},
+				{
+					"address": "azurerm_cosmosdb_account.mongo",
+					"mode": "managed",
+					"type": "azurerm_cosmosdb_account",
+					"name": "mongo",
+					"provider_name": "registry.terraform.io/hashicorp/azurerm",
+					"schema_version": 0,
+					"values": {
+						"access_key_metadata_writes_enabled": true,
+						"analytical_storage_enabled": false,
+						"capabilities": [
+							{
+								"name": "EnableMongo"
+							},
+							{
+								"name": "EnableServerless"
+							}
+						],
+						"consistency_policy": [
+							{
+								"consistency_level": "Session",
+								"max_interval_in_seconds": null,
+								"max_staleness_prefix": null
+							}
+						],
+						"cors_rule": [],
+						"default_identity_type": "FirstPartyIdentity",
+						"geo_location": [
+							{
+								"failover_priority": 0,
+								"location": "westeurope",
+								"zone_redundant": false
+							}
+						],
+						"identity": [],
+						"ip_range_filter": null,
+						"is_virtual_network_filter_enabled": false,
+						"key_vault_key_id": null,
+						"kind": "MongoDB",
+						"local_authentication_disabled": false,
+						"location": "westeurope",
+						"name": "cosmos-renting-dev",
+						"network_acl_bypass_for_azure_services": false,
+						"network_acl_bypass_ids": null,
+						"offer_type": "Standard",
+						"partition_merge_enabled": false,
+						"public_network_access_enabled": true,
+						"resource_group_name": "rg-renting-dev",
+						"restore": [],
+						"tags": null,
+						"timeouts": null,
+						"virtual_network_rule": []
+					},
+					"sensitive_values": {
+						"analytical_storage": [],
+						"backup": [],
+						"capabilities": [
+							{},
+							{}
+						],
+						"capacity": [],
+						"connection_strings": true,
+						"consistency_policy": [
+							{}
+						],
+						"cors_rule": [],
+						"geo_location": [
+							{}
+						],
+						"identity": [],
+						"primary_key": true,
+						"primary_mongodb_connection_string": true,
+						"primary_readonly_key": true,
+						"primary_readonly_mongodb_connection_string": true,
+						"primary_readonly_sql_connection_string": true,
+						"primary_sql_connection_string": true,
+						"read_endpoints": [],
+						"restore": [],
+						"secondary_key": true,
+						"secondary_mongodb_connection_string": true,
+						"secondary_readonly_key": true,
+						"secondary_readonly_mongodb_connection_string": true,
+						"secondary_readonly_sql_connection_string": true,
+						"secondary_sql_connection_string": true,
+						"virtual_network_rule": [],
+						"write_endpoints": []
+					}
+				},
+				{
+					"address": "azurerm_cosmosdb_mongo_database.mongodb",
+					"mode": "managed",
+					"type": "azurerm_cosmosdb_mongo_database",
+					"name": "mongodb",
+					"provider_name": "registry.terraform.io/hashicorp/azurerm",
+					"schema_version": 1,
+					"values": {
+						"account_name": "cosmos-renting-dev",
+						"autoscale_settings": [],
+						"name": "renting_db",
+						"resource_group_name": "rg-renting-dev",
+						"timeouts": null
+					},
+					"sensitive_values": {
+						"autoscale_settings": []
+					}
+				},
+				{
+					"address": "azurerm_kubernetes_cluster.aks",
+					"mode": "managed",
+					"type": "azurerm_kubernetes_cluster",
+					"name": "aks",
+					"provider_name": "registry.terraform.io/hashicorp/azurerm",
+					"schema_version": 2,
+					"values": {
+						"aci_connector_linux": [],
+						"automatic_channel_upgrade": null,
+						"azure_active_directory_role_based_access_control": [],
+						"azure_policy_enabled": null,
+						"confidential_computing": [],
+						"custom_ca_trust_certificates_base64": null,
+						"default_node_pool": [
+							{
+								"capacity_reservation_group_id": null,
+								"custom_ca_trust_enabled": null,
+								"enable_auto_scaling": null,
+								"enable_host_encryption": null,
+								"enable_node_public_ip": null,
+								"fips_enabled": null,
+								"gpu_instance": null,
+								"host_group_id": null,
+								"kubelet_config": [],
+								"linux_os_config": [],
+								"max_count": null,
+								"message_of_the_day": null,
+								"min_count": null,
+								"name": "default",
+								"node_count": 1,
+								"node_network_profile": [],
+								"node_public_ip_prefix_id": null,
+								"node_taints": null,
+								"only_critical_addons_enabled": null,
+								"os_disk_type": "Managed",
+								"pod_subnet_id": null,
+								"proximity_placement_group_id": null,
+								"scale_down_mode": "Delete",
+								"snapshot_id": null,
+								"tags": null,
+								"temporary_name_for_rotation": null,
+								"type": "VirtualMachineScaleSets",
+								"ultra_ssd_enabled": false,
+								"upgrade_settings": [],
+								"vm_size": "Standard_B2s",
+								"vnet_subnet_id": null,
+								"zones": null
+							}
+						],
+						"disk_encryption_set_id": null,
+						"dns_prefix": "aks-renting-dev",
+						"dns_prefix_private_cluster": null,
+						"edge_zone": null,
+						"enable_pod_security_policy": null,
+						"http_application_routing_enabled": null,
+						"http_proxy_config": [],
+						"identity": [
+							{
+								"identity_ids": null,
+								"type": "SystemAssigned"
+							}
+						],
+						"image_cleaner_enabled": false,
+						"image_cleaner_interval_hours": 48,
+						"ingress_application_gateway": [],
+						"key_management_service": [],
+						"key_vault_secrets_provider": [],
+						"linux_profile": [],
+						"local_account_disabled": null,
+						"location": "westeurope",
+						"maintenance_window": [],
+						"maintenance_window_auto_upgrade": [],
+						"maintenance_window_node_os": [],
+						"microsoft_defender": [],
+						"monitor_metrics": [],
+						"name": "aks-renting-dev",
+						"node_os_channel_upgrade": null,
+						"oidc_issuer_enabled": null,
+						"oms_agent": [],
+						"open_service_mesh_enabled": null,
+						"private_cluster_enabled": false,
+						"private_cluster_public_fqdn_enabled": false,
+						"public_network_access_enabled": true,
+						"resource_group_name": "rg-renting-dev",
+						"role_based_access_control_enabled": true,
+						"run_command_enabled": true,
+						"service_mesh_profile": [],
+						"service_principal": [],
+						"sku_tier": "Free",
+						"storage_profile": [],
+						"support_plan": "KubernetesOfficial",
+						"tags": {
+							"Environment": "dev"
+						},
+						"timeouts": null,
+						"web_app_routing": [],
+						"workload_autoscaler_profile": [],
+						"workload_identity_enabled": false
+					},
+					"sensitive_values": {
+						"aci_connector_linux": [],
+						"api_server_access_profile": [],
+						"api_server_authorized_ip_ranges": [],
+						"auto_scaler_profile": [],
+						"azure_active_directory_role_based_access_control": [],
+						"confidential_computing": [],
+						"default_node_pool": [
+							{
+								"kubelet_config": [],
+								"linux_os_config": [],
+								"node_labels": {},
+								"node_network_profile": [],
+								"upgrade_settings": []
+							}
+						],
+						"http_proxy_config": [],
+						"identity": [
+							{}
+						],
+						"ingress_application_gateway": [],
+						"key_management_service": [],
+						"key_vault_secrets_provider": [],
+						"kube_admin_config": true,
+						"kube_admin_config_raw": true,
+						"kube_config": true,
+						"kube_config_raw": true,
+						"kubelet_identity": [],
+						"linux_profile": [],
+						"maintenance_window": [],
+						"maintenance_window_auto_upgrade": [],
+						"maintenance_window_node_os": [],
+						"microsoft_defender": [],
+						"monitor_metrics": [],
+						"network_profile": [],
+						"oms_agent": [],
+						"service_mesh_profile": [],
+						"service_principal": [],
+						"storage_profile": [],
+						"tags": {},
+						"web_app_routing": [],
+						"windows_profile": [],
+						"workload_autoscaler_profile": []
+					}
+				},
+				{
+					"address": "azurerm_resource_group.rg",
+					"mode": "managed",
+					"type": "azurerm_resource_group",
+					"name": "rg",
+					"provider_name": "registry.terraform.io/hashicorp/azurerm",
+					"schema_version": 0,
+					"values": {
+						"location": "westeurope",
+						"managed_by": null,
+						"name": "rg-renting-dev",
+						"tags": null,
+						"timeouts": null
+					},
+					"sensitive_values": {}
+				},
+				{
+					"address": "azurerm_role_assignment.aks_acr_pull",
+					"mode": "managed",
+					"type": "azurerm_role_assignment",
+					"name": "aks_acr_pull",
+					"provider_name": "registry.terraform.io/hashicorp/azurerm",
+					"schema_version": 0,
+					"values": {
+						"condition": null,
+						"condition_version": null,
+						"delegated_managed_identity_resource_id": null,
+						"description": null,
+						"role_definition_name": "AcrPull",
+						"skip_service_principal_aad_check": true,
+						"timeouts": null
+					},
+					"sensitive_values": {}
+				}
+			]
+		}
+	},
+	"resource_changes": [
+		{
+			"address": "azurerm_container_registry.acr",
+			"mode": "managed",
+			"type": "azurerm_container_registry",
+			"name": "acr",
+			"provider_name": "registry.terraform.io/hashicorp/azurerm",
+			"change": {
+				"actions": [
+					"create"
+				],
+				"before": null,
+				"after": {
+					"admin_enabled": true,
+					"anonymous_pull_enabled": null,
+					"data_endpoint_enabled": null,
+					"export_policy_enabled": true,
+					"georeplications": [],
+					"identity": [],
+					"location": "westeurope",
+					"name": "crrentingdev",
+					"network_rule_bypass_option": "AzureServices",
+					"public_network_access_enabled": true,
+					"quarantine_policy_enabled": null,
+					"resource_group_name": "rg-renting-dev",
+					"sku": "Basic",
+					"tags": null,
+					"timeouts": null,
+					"zone_redundancy_enabled": false
+				},
+				"after_unknown": {
+					"admin_password": true,
+					"admin_username": true,
+					"encryption": true,
+					"georeplications": [],
+					"id": true,
+					"identity": [],
+					"login_server": true,
+					"network_rule_set": true,
+					"retention_policy": true,
+					"trust_policy": true
+				},
+				"before_sensitive": false,
+				"after_sensitive": {
+					"admin_password": true,
+					"encryption": [],
+					"georeplications": [],
+					"identity": [],
+					"network_rule_set": [],
+					"retention_policy": [],
+					"trust_policy": []
+				}
+			}
+		},
+		{
+			"address": "azurerm_cosmosdb_account.mongo",
+			"mode": "managed",
+			"type": "azurerm_cosmosdb_account",
+			"name": "mongo",
+			"provider_name": "registry.terraform.io/hashicorp/azurerm",
+			"change": {
+				"actions": [
+					"create"
+				],
+				"before": null,
+				"after": {
+					"access_key_metadata_writes_enabled": true,
+					"analytical_storage_enabled": false,
+					"capabilities": [
+						{
+							"name": "EnableMongo"
+						},
+						{
+							"name": "EnableServerless"
+						}
+					],
+					"consistency_policy": [
+						{
+							"consistency_level": "Session",
+							"max_interval_in_seconds": null,
+							"max_staleness_prefix": null
+						}
+					],
+					"cors_rule": [],
+					"default_identity_type": "FirstPartyIdentity",
+					"geo_location": [
+						{
+							"failover_priority": 0,
+							"location": "westeurope",
+							"zone_redundant": false
+						}
+					],
+					"identity": [],
+					"ip_range_filter": null,
+					"is_virtual_network_filter_enabled": false,
+					"key_vault_key_id": null,
+					"kind": "MongoDB",
+					"local_authentication_disabled": false,
+					"location": "westeurope",
+					"name": "cosmos-renting-dev",
+					"network_acl_bypass_for_azure_services": false,
+					"network_acl_bypass_ids": null,
+					"offer_type": "Standard",
+					"partition_merge_enabled": false,
+					"public_network_access_enabled": true,
+					"resource_group_name": "rg-renting-dev",
+					"restore": [],
+					"tags": null,
+					"timeouts": null,
+					"virtual_network_rule": []
+				},
+				"after_unknown": {
+					"analytical_storage": true,
+					"automatic_failover_enabled": true,
+					"backup": true,
+					"capabilities": [
+						{},
+						{}
+					],
+					"capacity": true,
+					"connection_strings": true,
+					"consistency_policy": [
+						{}
+					],
+					"cors_rule": [],
+					"create_mode": true,
+					"enable_automatic_failover": true,
+					"enable_free_tier": true,
+					"enable_multiple_write_locations": true,
+					"endpoint": true,
+					"free_tier_enabled": true,
+					"geo_location": [
+						{
+							"id": true
+						}
+					],
+					"id": true,
+					"identity": [],
+					"minimal_tls_version": true,
+					"mongo_server_version": true,
+					"multiple_write_locations_enabled": true,
+					"primary_key": true,
+					"primary_mongodb_connection_string": true,
+					"primary_readonly_key": true,
+					"primary_readonly_mongodb_connection_string": true,
+					"primary_readonly_sql_connection_string": true,
+					"primary_sql_connection_string": true,
+					"read_endpoints": true,
+					"restore": [],
+					"secondary_key": true,
+					"secondary_mongodb_connection_string": true,
+					"secondary_readonly_key": true,
+					"secondary_readonly_mongodb_connection_string": true,
+					"secondary_readonly_sql_connection_string": true,
+					"secondary_sql_connection_string": true,
+					"virtual_network_rule": [],
+					"write_endpoints": true
+				},
+				"before_sensitive": false,
+				"after_sensitive": {
+					"analytical_storage": [],
+					"backup": [],
+					"capabilities": [
+						{},
+						{}
+					],
+					"capacity": [],
+					"connection_strings": true,
+					"consistency_policy": [
+						{}
+					],
+					"cors_rule": [],
+					"geo_location": [
+						{}
+					],
+					"identity": [],
+					"primary_key": true,
+					"primary_mongodb_connection_string": true,
+					"primary_readonly_key": true,
+					"primary_readonly_mongodb_connection_string": true,
+					"primary_readonly_sql_connection_string": true,
+					"primary_sql_connection_string": true,
+					"read_endpoints": [],
+					"restore": [],
+					"secondary_key": true,
+					"secondary_mongodb_connection_string": true,
+					"secondary_readonly_key": true,
+					"secondary_readonly_mongodb_connection_string": true,
+					"secondary_readonly_sql_connection_string": true,
+					"secondary_sql_connection_string": true,
+					"virtual_network_rule": [],
+					"write_endpoints": []
+				}
+			}
+		},
+		{
+			"address": "azurerm_cosmosdb_mongo_database.mongodb",
+			"mode": "managed",
+			"type": "azurerm_cosmosdb_mongo_database",
+			"name": "mongodb",
+			"provider_name": "registry.terraform.io/hashicorp/azurerm",
+			"change": {
+				"actions": [
+					"create"
+				],
+				"before": null,
+				"after": {
+					"account_name": "cosmos-renting-dev",
+					"autoscale_settings": [],
+					"name": "renting_db",
+					"resource_group_name": "rg-renting-dev",
+					"timeouts": null
+				},
+				"after_unknown": {
+					"autoscale_settings": [],
+					"id": true,
+					"throughput": true
+				},
+				"before_sensitive": false,
+				"after_sensitive": {
+					"autoscale_settings": []
+				}
+			}
+		},
+		{
+			"address": "azurerm_kubernetes_cluster.aks",
+			"mode": "managed",
+			"type": "azurerm_kubernetes_cluster",
+			"name": "aks",
+			"provider_name": "registry.terraform.io/hashicorp/azurerm",
+			"change": {
+				"actions": [
+					"create"
+				],
+				"before": null,
+				"after": {
+					"aci_connector_linux": [],
+					"automatic_channel_upgrade": null,
+					"azure_active_directory_role_based_access_control": [],
+					"azure_policy_enabled": null,
+					"confidential_computing": [],
+					"custom_ca_trust_certificates_base64": null,
+					"default_node_pool": [
+						{
+							"capacity_reservation_group_id": null,
+							"custom_ca_trust_enabled": null,
+							"enable_auto_scaling": null,
+							"enable_host_encryption": null,
+							"enable_node_public_ip": null,
+							"fips_enabled": null,
+							"gpu_instance": null,
+							"host_group_id": null,
+							"kubelet_config": [],
+							"linux_os_config": [],
+							"max_count": null,
+							"message_of_the_day": null,
+							"min_count": null,
+							"name": "default",
+							"node_count": 1,
+							"node_network_profile": [],
+							"node_public_ip_prefix_id": null,
+							"node_taints": null,
+							"only_critical_addons_enabled": null,
+							"os_disk_type": "Managed",
+							"pod_subnet_id": null,
+							"proximity_placement_group_id": null,
+							"scale_down_mode": "Delete",
+							"snapshot_id": null,
+							"tags": null,
+							"temporary_name_for_rotation": null,
+							"type": "VirtualMachineScaleSets",
+							"ultra_ssd_enabled": false,
+							"upgrade_settings": [],
+							"vm_size": "Standard_B2s",
+							"vnet_subnet_id": null,
+							"zones": null
+						}
+					],
+					"disk_encryption_set_id": null,
+					"dns_prefix": "aks-renting-dev",
+					"dns_prefix_private_cluster": null,
+					"edge_zone": null,
+					"enable_pod_security_policy": null,
+					"http_application_routing_enabled": null,
+					"http_proxy_config": [],
+					"identity": [
+						{
+							"identity_ids": null,
+							"type": "SystemAssigned"
+						}
+					],
+					"image_cleaner_enabled": false,
+					"image_cleaner_interval_hours": 48,
+					"ingress_application_gateway": [],
+					"key_management_service": [],
+					"key_vault_secrets_provider": [],
+					"linux_profile": [],
+					"local_account_disabled": null,
+					"location": "westeurope",
+					"maintenance_window": [],
+					"maintenance_window_auto_upgrade": [],
+					"maintenance_window_node_os": [],
+					"microsoft_defender": [],
+					"monitor_metrics": [],
+					"name": "aks-renting-dev",
+					"node_os_channel_upgrade": null,
+					"oidc_issuer_enabled": null,
+					"oms_agent": [],
+					"open_service_mesh_enabled": null,
+					"private_cluster_enabled": false,
+					"private_cluster_public_fqdn_enabled": false,
+					"public_network_access_enabled": true,
+					"resource_group_name": "rg-renting-dev",
+					"role_based_access_control_enabled": true,
+					"run_command_enabled": true,
+					"service_mesh_profile": [],
+					"service_principal": [],
+					"sku_tier": "Free",
+					"storage_profile": [],
+					"support_plan": "KubernetesOfficial",
+					"tags": {
+						"Environment": "dev"
+					},
+					"timeouts": null,
+					"web_app_routing": [],
+					"workload_autoscaler_profile": [],
+					"workload_identity_enabled": false
+				},
+				"after_unknown": {
+					"aci_connector_linux": [],
+					"api_server_access_profile": true,
+					"api_server_authorized_ip_ranges": true,
+					"auto_scaler_profile": true,
+					"azure_active_directory_role_based_access_control": [],
+					"confidential_computing": [],
+					"current_kubernetes_version": true,
+					"default_node_pool": [
+						{
+							"kubelet_config": [],
+							"kubelet_disk_type": true,
+							"linux_os_config": [],
+							"max_pods": true,
+							"node_labels": true,
+							"node_network_profile": [],
+							"orchestrator_version": true,
+							"os_disk_size_gb": true,
+							"os_sku": true,
+							"upgrade_settings": [],
+							"workload_runtime": true
+						}
+					],
+					"fqdn": true,
+					"http_application_routing_zone_name": true,
+					"http_proxy_config": [],
+					"id": true,
+					"identity": [
+						{
+							"principal_id": true,
+							"tenant_id": true
+						}
+					],
+					"ingress_application_gateway": [],
+					"key_management_service": [],
+					"key_vault_secrets_provider": [],
+					"kube_admin_config": true,
+					"kube_admin_config_raw": true,
+					"kube_config": true,
+					"kube_config_raw": true,
+					"kubelet_identity": true,
+					"kubernetes_version": true,
+					"linux_profile": [],
+					"maintenance_window": [],
+					"maintenance_window_auto_upgrade": [],
+					"maintenance_window_node_os": [],
+					"microsoft_defender": [],
+					"monitor_metrics": [],
+					"network_profile": true,
+					"node_resource_group": true,
+					"node_resource_group_id": true,
+					"oidc_issuer_url": true,
+					"oms_agent": [],
+					"portal_fqdn": true,
+					"private_dns_zone_id": true,
+					"private_fqdn": true,
+					"service_mesh_profile": [],
+					"service_principal": [],
+					"storage_profile": [],
+					"tags": {},
+					"web_app_routing": [],
+					"windows_profile": true,
+					"workload_autoscaler_profile": []
+				},
+				"before_sensitive": false,
+				"after_sensitive": {
+					"aci_connector_linux": [],
+					"api_server_access_profile": [],
+					"api_server_authorized_ip_ranges": [],
+					"auto_scaler_profile": [],
+					"azure_active_directory_role_based_access_control": [],
+					"confidential_computing": [],
+					"default_node_pool": [
+						{
+							"kubelet_config": [],
+							"linux_os_config": [],
+							"node_labels": {},
+							"node_network_profile": [],
+							"upgrade_settings": []
+						}
+					],
+					"http_proxy_config": [],
+					"identity": [
+						{}
+					],
+					"ingress_application_gateway": [],
+					"key_management_service": [],
+					"key_vault_secrets_provider": [],
+					"kube_admin_config": true,
+					"kube_admin_config_raw": true,
+					"kube_config": true,
+					"kube_config_raw": true,
+					"kubelet_identity": [],
+					"linux_profile": [],
+					"maintenance_window": [],
+					"maintenance_window_auto_upgrade": [],
+					"maintenance_window_node_os": [],
+					"microsoft_defender": [],
+					"monitor_metrics": [],
+					"network_profile": [],
+					"oms_agent": [],
+					"service_mesh_profile": [],
+					"service_principal": [],
+					"storage_profile": [],
+					"tags": {},
+					"web_app_routing": [],
+					"windows_profile": [],
+					"workload_autoscaler_profile": []
+				}
+			}
+		},
+		{
+			"address": "azurerm_resource_group.rg",
+			"mode": "managed",
+			"type": "azurerm_resource_group",
+			"name": "rg",
+			"provider_name": "registry.terraform.io/hashicorp/azurerm",
+			"change": {
+				"actions": [
+					"create"
+				],
+				"before": null,
+				"after": {
+					"location": "westeurope",
+					"managed_by": null,
+					"name": "rg-renting-dev",
+					"tags": null,
+					"timeouts": null
+				},
+				"after_unknown": {
+					"id": true
+				},
+				"before_sensitive": false,
+				"after_sensitive": {}
+			}
+		},
+		{
+			"address": "azurerm_role_assignment.aks_acr_pull",
+			"mode": "managed",
+			"type": "azurerm_role_assignment",
+			"name": "aks_acr_pull",
+			"provider_name": "registry.terraform.io/hashicorp/azurerm",
+			"change": {
+				"actions": [
+					"create"
+				],
+				"before": null,
+				"after": {
+					"condition": null,
+					"condition_version": null,
+					"delegated_managed_identity_resource_id": null,
+					"description": null,
+					"role_definition_name": "AcrPull",
+					"skip_service_principal_aad_check": true,
+					"timeouts": null
+				},
+				"after_unknown": {
+					"id": true,
+					"name": true,
+					"principal_id": true,
+					"principal_type": true,
+					"role_definition_id": true,
+					"scope": true
+				},
+				"before_sensitive": false,
+				"after_sensitive": {}
+			}
+		}
+	],
+	"output_changes": {
+		"acr_login_server": {
+			"actions": [
+				"create"
+			],
+			"before": null,
+			"after_unknown": true,
+			"before_sensitive": false,
+			"after_sensitive": false
+		},
+		"aks_cluster_name": {
+			"actions": [
+				"create"
+			],
+			"before": null,
+			"after": "aks-renting-dev",
+			"after_unknown": false,
+			"before_sensitive": false,
+			"after_sensitive": false
+		},
+		"cosmosdb_connection_string": {
+			"actions": [
+				"create"
+			],
+			"before": null,
+			"after_unknown": true,
+			"before_sensitive": true,
+			"after_sensitive": true
+		},
+		"resource_group_name": {
+			"actions": [
+				"create"
+			],
+			"before": null,
+			"after": "rg-renting-dev",
+			"after_unknown": false,
+			"before_sensitive": false,
+			"after_sensitive": false
+		}
+	},
+	"prior_state": {
+		"format_version": "1.0",
+		"terraform_version": "1.15.6",
+		"values": {
+			"outputs": {
+				"aks_cluster_name": {
+					"sensitive": false,
+					"value": "aks-renting-dev",
+					"type": "string"
+				},
+				"resource_group_name": {
+					"sensitive": false,
+					"value": "rg-renting-dev",
+					"type": "string"
+				}
+			},
+			"root_module": {}
+		}
+	},
+	"configuration": {
+		"provider_config": {
+			"azurerm": {
+				"name": "azurerm",
+				"full_name": "registry.terraform.io/hashicorp/azurerm",
+				"version_constraint": "~> 3.100.0",
+				"expressions": {
+					"features": [
+						{}
+					]
+				}
+			}
+		},
+		"root_module": {
+			"outputs": {
+				"acr_login_server": {
+					"expression": {
+						"references": [
+							"azurerm_container_registry.acr.login_server",
+							"azurerm_container_registry.acr"
+						]
+					}
+				},
+				"aks_cluster_name": {
+					"expression": {
+						"references": [
+							"azurerm_kubernetes_cluster.aks.name",
+							"azurerm_kubernetes_cluster.aks"
+						]
+					}
+				},
+				"cosmosdb_connection_string": {
+					"sensitive": true,
+					"expression": {
+						"references": [
+							"azurerm_cosmosdb_account.mongo.connection_strings[0]",
+							"azurerm_cosmosdb_account.mongo.connection_strings",
+							"azurerm_cosmosdb_account.mongo"
+						]
+					}
+				},
+				"resource_group_name": {
+					"expression": {
+						"references": [
+							"azurerm_resource_group.rg.name",
+							"azurerm_resource_group.rg"
+						]
+					}
+				}
+			},
+			"resources": [
+				{
+					"address": "azurerm_container_registry.acr",
+					"mode": "managed",
+					"type": "azurerm_container_registry",
+					"name": "acr",
+					"provider_config_key": "azurerm",
+					"expressions": {
+						"admin_enabled": {
+							"constant_value": true
+						},
+						"location": {
+							"references": [
+								"azurerm_resource_group.rg.location",
+								"azurerm_resource_group.rg"
+							]
+						},
+						"name": {
+							"references": [
+								"var.project_name",
+								"var.environment"
+							]
+						},
+						"resource_group_name": {
+							"references": [
+								"azurerm_resource_group.rg.name",
+								"azurerm_resource_group.rg"
+							]
+						},
+						"sku": {
+							"constant_value": "Basic"
+						}
+					},
+					"schema_version": 2
+				},
+				{
+					"address": "azurerm_cosmosdb_account.mongo",
+					"mode": "managed",
+					"type": "azurerm_cosmosdb_account",
+					"name": "mongo",
+					"provider_config_key": "azurerm",
+					"expressions": {
+						"capabilities": [
+							{
+								"name": {
+									"constant_value": "EnableMongo"
+								}
+							},
+							{
+								"name": {
+									"constant_value": "EnableServerless"
+								}
+							}
+						],
+						"consistency_policy": [
+							{
+								"consistency_level": {
+									"constant_value": "Session"
+								}
+							}
+						],
+						"geo_location": [
+							{
+								"failover_priority": {
+									"constant_value": 0
+								},
+								"location": {
+									"references": [
+										"azurerm_resource_group.rg.location",
+										"azurerm_resource_group.rg"
+									]
+								}
+							}
+						],
+						"kind": {
+							"constant_value": "MongoDB"
+						},
+						"location": {
+							"references": [
+								"azurerm_resource_group.rg.location",
+								"azurerm_resource_group.rg"
+							]
+						},
+						"name": {
+							"references": [
+								"var.project_name",
+								"var.environment"
+							]
+						},
+						"offer_type": {
+							"constant_value": "Standard"
+						},
+						"resource_group_name": {
+							"references": [
+								"azurerm_resource_group.rg.name",
+								"azurerm_resource_group.rg"
+							]
+						}
+					},
+					"schema_version": 0
+				},
+				{
+					"address": "azurerm_cosmosdb_mongo_database.mongodb",
+					"mode": "managed",
+					"type": "azurerm_cosmosdb_mongo_database",
+					"name": "mongodb",
+					"provider_config_key": "azurerm",
+					"expressions": {
+						"account_name": {
+							"references": [
+								"azurerm_cosmosdb_account.mongo.name",
+								"azurerm_cosmosdb_account.mongo"
+							]
+						},
+						"name": {
+							"constant_value": "renting_db"
+						},
+						"resource_group_name": {
+							"references": [
+								"azurerm_cosmosdb_account.mongo.resource_group_name",
+								"azurerm_cosmosdb_account.mongo"
+							]
+						}
+					},
+					"schema_version": 1
+				},
+				{
+					"address": "azurerm_kubernetes_cluster.aks",
+					"mode": "managed",
+					"type": "azurerm_kubernetes_cluster",
+					"name": "aks",
+					"provider_config_key": "azurerm",
+					"expressions": {
+						"default_node_pool": [
+							{
+								"name": {
+									"constant_value": "default"
+								},
+								"node_count": {
+									"constant_value": 1
+								},
+								"vm_size": {
+									"constant_value": "Standard_B2s"
+								}
+							}
+						],
+						"dns_prefix": {
+							"references": [
+								"var.project_name",
+								"var.environment"
+							]
+						},
+						"identity": [
+							{
+								"type": {
+									"constant_value": "SystemAssigned"
+								}
+							}
+						],
+						"location": {
+							"references": [
+								"azurerm_resource_group.rg.location",
+								"azurerm_resource_group.rg"
+							]
+						},
+						"name": {
+							"references": [
+								"var.project_name",
+								"var.environment"
+							]
+						},
+						"resource_group_name": {
+							"references": [
+								"azurerm_resource_group.rg.name",
+								"azurerm_resource_group.rg"
+							]
+						},
+						"tags": {
+							"references": [
+								"var.environment"
+							]
+						}
+					},
+					"schema_version": 2
+				},
+				{
+					"address": "azurerm_resource_group.rg",
+					"mode": "managed",
+					"type": "azurerm_resource_group",
+					"name": "rg",
+					"provider_config_key": "azurerm",
+					"expressions": {
+						"location": {
+							"references": [
+								"var.location"
+							]
+						},
+						"name": {
+							"references": [
+								"var.project_name",
+								"var.environment"
+							]
+						}
+					},
+					"schema_version": 0
+				},
+				{
+					"address": "azurerm_role_assignment.aks_acr_pull",
+					"mode": "managed",
+					"type": "azurerm_role_assignment",
+					"name": "aks_acr_pull",
+					"provider_config_key": "azurerm",
+					"expressions": {
+						"principal_id": {
+							"references": [
+								"azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id",
+								"azurerm_kubernetes_cluster.aks.kubelet_identity[0]",
+								"azurerm_kubernetes_cluster.aks.kubelet_identity",
+								"azurerm_kubernetes_cluster.aks"
+							]
+						},
+						"role_definition_name": {
+							"constant_value": "AcrPull"
+						},
+						"scope": {
+							"references": [
+								"azurerm_container_registry.acr.id",
+								"azurerm_container_registry.acr"
+							]
+						},
+						"skip_service_principal_aad_check": {
+							"constant_value": true
+						}
+					},
+					"schema_version": 0
+				}
+			],
+			"variables": {
+				"environment": {
+					"default": "dev",
+					"description": "The environment (e.g., dev, prod)"
+				},
+				"location": {
+					"default": "westeurope",
+					"description": "The Azure region to deploy resources"
+				},
+				"project_name": {
+					"default": "renting",
+					"description": "The base name for the project resources"
+				}
+			}
+		}
+	},
+	"relevant_attributes": [
+		{
+			"resource": "azurerm_container_registry.acr",
+			"attribute": [
+				"id"
+			]
+		},
+		{
+			"resource": "azurerm_kubernetes_cluster.aks",
+			"attribute": [
+				"kubelet_identity",
+				0,
+				"object_id"
+			]
+		},
+		{
+			"resource": "azurerm_resource_group.rg",
+			"attribute": [
+				"name"
+			]
+		},
+		{
+			"resource": "azurerm_container_registry.acr",
+			"attribute": [
+				"login_server"
+			]
+		},
+		{
+			"resource": "azurerm_cosmosdb_account.mongo",
+			"attribute": [
+				"connection_strings",
+				0
+			]
+		},
+		{
+			"resource": "azurerm_cosmosdb_account.mongo",
+			"attribute": [
+				"name"
+			]
+		},
+		{
+			"resource": "azurerm_resource_group.rg",
+			"attribute": [
+				"location"
+			]
+		},
+		{
+			"resource": "azurerm_cosmosdb_account.mongo",
+			"attribute": [
+				"resource_group_name"
+			]
+		},
+		{
+			"resource": "azurerm_kubernetes_cluster.aks",
+			"attribute": [
+				"name"
+			]
+		}
+	],
+	"timestamp": "2026-06-14T19:10:48Z",
+	"applyable": true,
+	"complete": true,
+	"errored": false
+}

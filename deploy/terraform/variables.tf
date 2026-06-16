@@ -7,11 +7,11 @@ variable "environment" {
 variable "location" {
   description = "The Azure region to deploy resources"
   type        = string
-  default     = "westeurope"
+  default     = "eastus"
 }
 
 variable "project_name" {
   description = "The base name for the project resources"
   type        = string
-  default     = "renting"
+  default     = "renting2"
 }

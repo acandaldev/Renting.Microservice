@@ -23,7 +23,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   default_node_pool {
     name       = "default"
     node_count = 1
-    vm_size    = "Standard_B2s" # Cost-effective for dev/portfolio
+    vm_size    = "Standard_D2s_v3" # Explicitly allowed by subscription quota in eastus
   }
 
   identity {
