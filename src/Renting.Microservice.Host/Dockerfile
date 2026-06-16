@@ -9,6 +9,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0.100-noble-amd64 AS build
 WORKDIR /src
 COPY Directory.Build.* ./
 COPY NuGet.config .
+COPY .editorconfig .
 COPY ["src/Renting.Microservice.Host/Renting.Microservice.Host.csproj", "Renting.Microservice.Host/"]
 COPY ["src/Renting.Microservice.Api/Renting.Microservice.Api.csproj", "Renting.Microservice.Api/"]
 COPY ["src/Renting.Microservice.ApplicationCore/Renting.Microservice.ApplicationCore.csproj", "Renting.Microservice.ApplicationCore/"]
