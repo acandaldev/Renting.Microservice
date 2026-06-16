@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: renting-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: renting-microservice
+  template:
+    metadata:
+      labels:
+        app: renting-microservice
+    spec:
+      containers:
+        - name: renting-microservice
+          image: __IMAGE_TAG__
+          ports:
+            - containerPort: 80
