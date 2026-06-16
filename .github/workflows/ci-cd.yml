@@ -1,0 +1,72 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
+  workflow_dispatch:
+
+env:
+  REGISTRY_NAME: "crrenting2dev"
+  CLUSTER_NAME: "aks-renting2-dev"
+  CLUSTER_RESOURCE_GROUP: "rg-renting2-dev"
+  IMAGE_NAME: "renting-microservice"
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore microservice.sln
+
+    - name: Build
+      run: dotnet build microservice.sln --no-restore -c Release
+
+    - name: Test
+      run: dotnet test microservice.sln --no-build -c Release --verbosity normal
+
+  build-and-deploy:
+    needs: build-and-test
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Connect to Azure Container Registry (ACR)
+      run: |
+        az acr login --name ${{ env.REGISTRY_NAME }}
+
+    - name: Build and push Docker image
+      run: |
+        IMAGE_TAG=${{ github.sha }}
+        docker build -t ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:$IMAGE_TAG -f src/Renting.Microservice.Host/Dockerfile .
+        docker push ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:$IMAGE_TAG
+
+    - name: Get AKS Credentials
+      run: |
+        az aks get-credentials --resource-group ${{ env.CLUSTER_RESOURCE_GROUP }} --name ${{ env.CLUSTER_NAME }} --overwrite-existing
+
+    - name: Replace tokens in Kubernetes manifests and Deploy
+      run: |
+        IMAGE_TAG=${{ github.sha }}
+        FULL_IMAGE_NAME="${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:$IMAGE_TAG"
+        
+        # Reemplazar el placeholder __IMAGE_TAG__ por la imagen real
+        sed -i "s|__IMAGE_TAG__|$FULL_IMAGE_NAME|g" deploy/k8s/deployment.yaml
+        
+        # Aplicar a Kubernetes
+        kubectl apply -f deploy/k8s/deployment.yaml
+        kubectl apply -f deploy/k8s/service.yaml
