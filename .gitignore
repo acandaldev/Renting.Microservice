@@ -339,6 +339,11 @@ ASALocalRun/
 # .tfvars files
 *.tfvars
 
+# Terraform plan files
+tfplan
+*.tfplan
+tfplan.json
+
 # Backend configuration and environment variables
 backend*.cfg
 azure-env*.ps1
