@@ -29,5 +29,5 @@ spec:
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Production"
-        # In a real scenario, the Connection String would come from a K8s Secret or Azure Key Vault
-        # For this demo, we'll assume it's injected via the pipeline or we rely on the app handling it.
+        - name: KeyVaultName
+          value: "__KEY_VAULT_NAME__"

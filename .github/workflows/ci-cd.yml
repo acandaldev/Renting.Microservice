@@ -74,9 +74,12 @@ jobs:
         IMAGE_TAG=${{ github.sha }}
         FULL_IMAGE_NAME="${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:$IMAGE_TAG"
         
-        # Reemplazar el placeholder __IMAGE_TAG__ por la imagen real
+        # 1. Reemplazar la imagen
         sed -i "s|__IMAGE_TAG__|$FULL_IMAGE_NAME|g" deploy/k8s/deployment.yaml
         
-        # Aplicar a Kubernetes
+        # 2. Reemplazar el nombre del Key Vault leyendo de las GitHub Variables (vars)
+        sed -i "s|__KEY_VAULT_NAME__|${{ vars.KEY_VAULT_NAME }}|g" deploy/k8s/deployment.yaml
+        
+        # 3. Aplicar los manifiestos finales a Kubernetes
         kubectl apply -f deploy/k8s/deployment.yaml
         kubectl apply -f deploy/k8s/service.yaml

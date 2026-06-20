@@ -14,3 +14,11 @@ output "cosmosdb_connection_string" {
   value     = azurerm_cosmosdb_account.mongo.primary_mongodb_connection_string
   sensitive = true
 }
+
+output "key_vault_name" {
+  value = azurerm_key_vault.kv.name
+}
+
+output "key_vault_uri" {
+  value = azurerm_key_vault.kv.vault_uri
+}
