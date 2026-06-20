@@ -110,11 +110,11 @@ This repository includes a Terraform configuration (deploy/terraform/) to provis
 
 ### Deploying Infrastructure
 
-`ash
+```bash
 cd deploy/terraform
 terraform init
 terraform apply
-`
+```
 *Note: Terraform will output key_vault_name. Add this value as a **Repository Variable** named KEY_VAULT_NAME in your GitHub repository settings.*
 
 ## CI/CD Pipeline & GitOps Flow
@@ -134,7 +134,7 @@ A fully automated CI/CD pipeline using **GitHub Actions** is defined in .github/
 
 The following diagram illustrates the complete DevOps lifecycle, highlighting how secrets are isolated from the code repository:
 
-`mermaid
+```mermaid
 flowchart TD
     %% Define Styles
     classDef azure fill:#0072C6,color:white,stroke:none;
@@ -174,4 +174,5 @@ flowchart TD
     AKS -->|1. Request Secret (Managed Identity)| KV
     KV -.->|2. Returns DB Password| AKS
     AKS -->|3. Connects securely| DB
-`
+```
+
