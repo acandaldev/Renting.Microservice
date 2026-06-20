@@ -171,7 +171,7 @@ flowchart TD
     end
 
     %% Runtime connections
-    AKS -->|1. Request Secret (Managed Identity)| KV
+    AKS -->|1. Request Secret via Managed Identity| KV
     KV -.->|2. Returns DB Password| AKS
     AKS -->|3. Connects securely| DB
 ```
