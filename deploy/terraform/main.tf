@@ -30,6 +30,9 @@ resource "azurerm_kubernetes_cluster" "aks" {
     type = "SystemAssigned"
   }
 
+  oidc_issuer_enabled       = true
+  workload_identity_enabled = true
+
   tags = {
     Environment = var.environment
   }
@@ -50,6 +53,7 @@ resource "azurerm_cosmosdb_account" "mongo" {
   resource_group_name = azurerm_resource_group.rg.name
   offer_type          = "Standard"
   kind                = "MongoDB"
+  mongo_server_version = "4.2"
 
   capabilities {
     name = "EnableMongo"
